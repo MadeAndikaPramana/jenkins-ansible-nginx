@@ -1,0 +1,29 @@
+---
+- name: Install and Start NGINX
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start NGINX service
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Verify NGINX is running
+      command: systemctl status nginx
+      register: nginx_status
+      changed_when: false
+
+    - name: Display NGINX status
+      debug:
+        msg: "NGINX is {{ 'running' if 'active (running)' in nginx_status.stdout else 'not running' }}"
