@@ -1,6 +1,6 @@
 # Jenkins + Ansible + NGINX Deployment
 
-Automated deployment of NGINX to Ubuntu server using Jenkins pipeline and Ansible.
+Automated deployment NGINX to Ubuntu server menggunakan Jenkins pipeline dan Ansible.
 
 ## Architecture
 - **Jenkins**: CI/CD orchestration
